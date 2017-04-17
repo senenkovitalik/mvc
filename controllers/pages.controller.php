@@ -2,8 +2,15 @@
 
 class PagesController extends Controller {
 
+    public function __construct(array $data = array())
+    {
+        parent::__construct($data);
+        $this->model = new Page();
+    }
+
     public function index() {
-        echo "Here will be a pages list";
+        $this->data['pages'] = $this->model->getList();
+        return ROOT.DS.'views'.DS.'pages'.DS.'index.html';
     }
 
     public function view() {
@@ -11,7 +18,9 @@ class PagesController extends Controller {
 
         if ( isset($params[0])) {
             $alias = strtolower($params[0]);
-            echo "Here will be a page with '{$alias}' alias";
+            $this->data['page'] = $this->model->getByAlias($alias);
         }
+
+        return ROOT.DS.'views'.DS.'pages'.DS.'view.html';
     }
 }
