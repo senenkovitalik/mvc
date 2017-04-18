@@ -8,8 +8,6 @@ require_once (ROOT.DS.'lib'.DS.'init.php');
 
 $uri = $_SERVER['REQUEST_URI'];
 
-App::run($uri);
+Session::setFlash("Test flash message");
 
-$test = App::$db->query('select * from pages');
-echo "<pre>";
-print_r ($test);
+App::run($uri);

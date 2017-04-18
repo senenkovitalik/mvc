@@ -7,11 +7,11 @@ class Page extends Model {
         if ( $only_published ) {
             $sql .= ' and is_published = 1';
         }
-        return $this->query($sql);
+        return $this->db->query($sql);
     }
 
     public function getByAlias($alias) {
-        $alias = $this->escape($alias);
+        $alias = $this->db->escape($alias);
         $sql = "select * from pages where alias = '{$alias}' limit 1";
         $result = $this->db->query($sql);
 

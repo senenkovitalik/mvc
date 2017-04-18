@@ -1,15 +1,11 @@
 <?php
 
 class View {
+
     protected $data;
 
     protected $path;
 
-    /**
-     * View constructor.
-     * @param $data
-     * @param $path
-     */
     public function __construct($data = array(), $path = null)
     {
         if (!$path) {
@@ -37,6 +33,7 @@ class View {
     }
 
     public function render() {
+
         $data = $this->data;
 
         ob_start();

@@ -12,6 +12,7 @@ class App {
     }
 
     public static function run($uri) {
+
         self::$router = new Router($uri);
 
         self::$db = new DB(
@@ -29,7 +30,7 @@ class App {
         $controller_object = new $controller_class();
         if ( method_exists($controller_object, $controller_method)) {
             // Controller's action may return a view path
-            $view_path = $controller_object->$controller_method();
+            $view_path = $controller_object->$controller_method();  // get data from DB
             $view_object = new View($controller_object->getData(), $view_path);
             $content = $view_object->render();
         } else {
@@ -37,7 +38,7 @@ class App {
         }
 
         $layout = self::$router->getRoute();
-        $layout_path = VIEWS_PATH.DS.$layout.'.html';
+        $layout_path = VIEWS_PATH.DS.$layout.'.html';   // default.html
         $layout_view_object = new View(compact('content'), $layout_path);
         echo $layout_view_object->render();
     }
