@@ -65,6 +65,10 @@ class Router {
         }
     }
 
+    public function redirect($location) {
+        header("Location: $location");
+    }
+
     public function getUri()
     {
         return $this->uri;

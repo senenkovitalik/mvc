@@ -23,4 +23,16 @@ class PagesController extends Controller {
 
         return ROOT.DS.'views'.DS.'pages'.DS.'view.html';
     }
+
+    public function admin_index() {
+        $this->data["pages"] = $this->model->getList();
+    }
+
+    public function admin_edit() {
+        if ( isset($this->params[0])) {
+            $this->data['page'] = $this->model->getById(($this->params[0]));
+        } else {
+            Session::setFlash('Wrong page id.');
+        }
+    }
 }
