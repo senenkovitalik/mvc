@@ -8,4 +8,6 @@ require_once (ROOT.DS.'lib'.DS.'init.php');
 
 $uri = $_SERVER['REQUEST_URI'];
 
+session_start();
+
 App::run($uri);

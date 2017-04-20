@@ -65,7 +65,7 @@ class Router {
         }
     }
 
-    public function redirect($location) {
+    public static function redirect($location) {
         header("Location: $location");
     }
 
